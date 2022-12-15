@@ -5,10 +5,25 @@ var tellmeBtn = document.querySelector('#tellme-btn');
 var outputBox = document.querySelector('#output-box');
 
 function calculateProfitAndLoss(initial, quantity, current) {
-    if(initial > current) {
-        var loss = (initial - current) * quantity;
-        var lossPercentage = ((initial - current) / initial) * 100;
-        showOutput(`Hey the loss is ${loss} and the percentage is ${lossPercentage}%`);
+    if (initial === "") {
+      showOutput("Enter Initial Price");
+    } 
+    else if (quantity === "") {
+      showOutput("Enter Quantity");
+    } 
+    else if (current === "") {
+      showOutput("Enter Current Price");
+    } 
+    else if (initial < 0 || current < 0) {
+      showOutput("Price can not be negative");
+    } 
+    else if (quantity < 0) {
+      showOutput("Quantity can not be negative");
+    } 
+    else if(initial > current) {
+      var loss = (initial - current) * quantity;
+      var lossPercentage = ((initial - current) / initial) * 100;
+      showOutput(`Hey the loss is ${loss} and the percentage is ${lossPercentage}%`);
     }
     else if (current > initial) {
         var profit = (current - initial) * quantity;
